@@ -1,12 +1,19 @@
-class TimerInterface extends React.Component {
+class ReminderInterface extends React.Component {
     render() {
         return (
+            <div className='interface'>
                 <div className='timer'>
                     <Timer 
                         title={'Fire-Check Reminder'}
                         time={'00:00'}
                     />
                 </div>
+                <div className='reminder'>
+                    <Reminder 
+                        isShown={false}
+                    />
+                </div>
+            </div>
         );
     }        
 }
@@ -36,16 +43,19 @@ class Timer extends React.Component {
     }        
 }
 
-//class Reminder extends React.Component {
-//    render() {
-//        return (
-//        );
-//    }        
-//}
+class Reminder extends React.Component {
+    render() {
+        return (
+            <div id='notification' className="ui warning compact message">
+                <p>Yo, fool: check the building to make sure it's not on fire!</p>
+            </div>
+        );
+    }        
+}
 
 
 ReactDOM.render(
-  <TimerInterface />,
+  <ReminderInterface />,
   document.getElementById('content')
 );
 
