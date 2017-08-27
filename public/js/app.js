@@ -1,16 +1,15 @@
 class ReminderInterface extends React.Component {
+    
     render() {
         return (
             <div className='interface'>
                 <div className='timer'>
                     <Timer 
                         title={'Fire-Check Reminder'}
-                        time={'00:00'}
                     />
                 </div>
                 <div className='reminder'>
                     <Reminder 
-                        isShown={false}
                     />
                 </div>
             </div>
@@ -19,6 +18,19 @@ class ReminderInterface extends React.Component {
 }
 
 class Timer extends React.Component {
+    state = {
+        elapsed: 0
+    }
+    
+    tick = () => {
+        this.setState({ elapsed: this.state.elapsed + 1});
+    }
+
+
+    onStartClick = () => {
+        setInterval(() => this.tick(), 50);
+    }
+    
     render() {
         return (
         <div className='ui card'>
@@ -28,13 +40,13 @@ class Timer extends React.Component {
                         <p>{this.props.title}</p>
                     </div>
                     <div id='time' className='center aligned description'>
-                        <h3>{this.props.time}</h3>
+                        <h3>{this.state.elapsed}</h3>
                     </div>
                 </div>
                 <div className='extra content'>
                     <div className='ui two buttons'>
-                <div className="ui basic green button">Start</div>
-                <div className="ui basic red button">Stop</div>
+                        <div className="ui basic green button" onClick={this.onStartClick}>Start</div>
+                        <div className="ui basic red button">Stop</div>
                     </div>
                 </div>
             </div>
@@ -44,6 +56,10 @@ class Timer extends React.Component {
 }
 
 class Reminder extends React.Component {
+    state = {
+        isShown: false,
+    }
+    
     render() {
         return (
             <div id='notification' className="ui warning compact message">
