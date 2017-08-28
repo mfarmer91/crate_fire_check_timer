@@ -1,3 +1,8 @@
+const toSeconds = (sec) =>
+  Math.floor(sec / 60) +
+    ':' +
+  ('0' + sec % 60).slice(-2)
+
 class ReminderInterface extends React.Component {
     
     render() {
@@ -23,12 +28,13 @@ class Timer extends React.Component {
     }
     
     tick = () => {
+    
         this.setState({ elapsed: this.state.elapsed + 1});
     }
 
 
     onStartClick = () => {
-        setInterval(() => this.tick(), 50);
+        setInterval(() => this.tick(), 1000);
     }
     
     render() {
@@ -40,7 +46,7 @@ class Timer extends React.Component {
                         <p>{this.props.title}</p>
                     </div>
                     <div id='time' className='center aligned description'>
-                        <h3>{this.state.elapsed}</h3>
+                        <h3>{toSeconds(this.state.elapsed)}</h3>
                     </div>
                 </div>
                 <div className='extra content'>
