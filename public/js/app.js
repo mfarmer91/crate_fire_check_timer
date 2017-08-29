@@ -24,17 +24,20 @@ class ReminderInterface extends React.Component {
 
 class Timer extends React.Component {
     state = {
-        elapsed: 0
+        elapsed: 0,
     }
     
     tick = () => {
-    
         this.setState({ elapsed: this.state.elapsed + 1});
     }
 
 
     onStartClick = () => {
-        setInterval(() => this.tick(), 1000);
+        this.interval = setInterval(() => this.tick(), 1000);
+    }
+    
+    onStopClick = () => {
+        clearInterval(this.interval);
     }
     
     render() {
@@ -52,7 +55,7 @@ class Timer extends React.Component {
                 <div className='extra content'>
                     <div className='ui two buttons'>
                         <div className="ui basic green button" onClick={this.onStartClick}>Start</div>
-                        <div className="ui basic red button">Stop</div>
+                        <div className="ui basic red button" onClick={this.onStopClick}>Stop</div>
                     </div>
                 </div>
             </div>
