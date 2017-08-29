@@ -32,6 +32,8 @@ i.icon {
 #notification {
     display: block;
     margin-top: 5%;
+    position: relative;
+    right: 100px;
 }
 
 p {
